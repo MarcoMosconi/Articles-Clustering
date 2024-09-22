@@ -6,7 +6,7 @@ import datetime
 def scrape(article_content, all_articles):
     driver = webdriver.Chrome()
     link = article_content.find("a", href=True)
-    title = link.text
+    title = link.h2.text
     driver.get(link['href'])
     soup = BeautifulSoup(driver.page_source, 'lxml')
     
