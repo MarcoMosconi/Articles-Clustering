@@ -9,8 +9,10 @@ def scrape(article_content, all_articles):
     title = link.h2.text
     driver.get(link['href'])
     soup = BeautifulSoup(driver.page_source, 'lxml')
-    
-    text = ' '.join([p.text for p in soup.find_all('p') if p.get('data-qr-index')])
+
+    text = ' '
+    while text == ' ':    
+        text = text.join([p.text for p in soup.find_all('p') if p.get('data-qr-index')])
 
     all_articles.append({
         'Publication': 'ilPost',
